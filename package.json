@@ -1,0 +1,28 @@
+{
+  "name": "lemon-react-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build:css": "postcss src/**/*.css --base src -d build",
+    "build:ts": "npx tsc -p ."
+  },
+  "keywords": [
+    "lemon",
+    "ui",
+    "react",
+    "components",
+    "typescript"
+  ],
+  "author": "iñaki",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.2.64",
+    "react": "^18.2.0",
+    "typescript": "^5.4.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  }
+}
