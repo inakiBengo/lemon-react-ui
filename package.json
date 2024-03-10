@@ -5,8 +5,9 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "build:css": "postcss src/**/*.css --base src -d build",
-    "build:ts": "npx tsc -p ."
+    "build:css": "postcss src/**/*.module.css --base src -d build",
+    "build:ts": "npx tsc -p .",
+    "build": "npx tsc -p . && postcss src/**/*.module.css --base src -d build"
   },
   "keywords": [
     "lemon",

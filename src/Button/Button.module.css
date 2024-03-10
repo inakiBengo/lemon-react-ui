@@ -1,3 +1,264 @@
-.button {
-  background-color: red;
+:root {
+  --color-black-default: rgb(14, 14, 14);
+  --color-white-default: rgb(236, 236, 236);
+  --scale-font-default: 0.95;
+}
+
+.buttonContainer {
+  width: fit-content;
+}
+.styles {
+  background-color: transparent;
+  color: var(--color-black-default);
+  width: fit-content;
+  padding: 0.6rem 0.6rem;
+  border: transparent solid 2px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+svg {
+  width: fit-content;
+  background-color: transparent;
+}
+.loaderIcon {
+  height: 1rem;
+  animation: loaderAnimation 1s ease-in-out infinite;
+}
+@keyframes loaderAnimation {
+  0% {
+    rotate: 0;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+/* LOADER SVG */
+.xs_size svg {
+  height: 0.8rem;
+}
+.sm_size svg {
+  height: 1rem;
+}
+.md_size svg {
+  height: 1.2rem;
+}
+.lg_size svg {
+  height: 1.4rem;
+}
+.xl_size svg{
+  height: 1.6rem;
+}
+
+/* button size */
+.xs_size {
+  font-size: 0.8rem;
+}
+.sm_size {
+  font-size: 1rem;
+}
+.md_size {
+  font-size: 1.2rem;
+}
+.lg_size {
+  font-size: 1.4rem;
+}
+.xl_size {
+  font-size: 1.6rem;
+}
+
+/* button radius */
+.xs_radius {
+  border-radius: 0;
+}
+.sm_radius {
+  border-radius: 4px;
+}
+.md_radius {
+  border-radius: 8px;
+}
+.lg_radius {
+  border-radius: 16px;
+}
+.xl_radius {
+  border-radius: 50px;
+}
+
+/* button font-weight */
+.xs_fw {
+  font-weight: 100;
+}
+.sm_fw {
+  font-weight: 300;
+}
+.md_fw {
+  font-weight: 500;
+}
+.lg_fw {
+  font-weight: 700;
+}
+.xl_fw {
+  font-weight: 900;
+}
+
+/* button variant */
+/* CV=CUSTOM VARIANT NCV=NO CUSTOM VARIANT */
+
+/* DEFAULT CV*/
+.default {
+  background-color: var(--color-white-default);
+}
+.buttonContainer:hover .default {
+  background-color: #d7d7d7;
+}
+.buttonContainer:active .default {
+  scale: var(--scale-font-default);
+  background-color: #c1c1c1;
+}
+
+/* WARNING NCV*/
+.warning {
+  background-color: #d9ea1f;
+}
+.buttonContainer:hover .warning {
+  background-color: #bfce1c;
+}
+.buttonContainer:active .warning {
+  scale: var(--scale-font-default);
+  background-color: #a5b30b;
+}
+
+/* DANGER CV */
+.danger {
+  background-color: rgb(227, 28, 28);
+  color: var(--color-white-default);
+}
+.buttonContainer:hover .danger {
+  background-color: rgb(180, 22, 22);
+}
+.buttonContainer:active .danger {
+  scale: var(--scale-font-default);
+  background-color: rgb(148, 14, 14);
+}
+
+/* SUCCESS CV */
+.success {
+  background-color: rgb(23, 199, 44);
+  color: var(--color-white-default);
+}
+.buttonContainer:hover .success {
+  background-color: rgb(17, 154, 33);
+}
+.buttonContainer:active .success {
+  scale: var(--scale-font-default);
+  background-color: rgb(11, 112, 23);
+}
+
+/* LIGHT CV */
+.light {
+  background-color: #e4e4e472;
+}
+.buttonContainer:hover .light {
+  background-color: #b3b3b372;
+}
+.buttonContainer:active .light {
+  scale: var(--scale-font-default);
+  background-color: #91919172;
+}
+
+/* LINE CV */
+.line {
+  background-color: transparent;
+  border: solid #e4e4e4 2px;
+}
+.buttonContainer:hover .line {
+  background-color: #dedede72;
+}
+.buttonContainer:active .line {
+  scale: var(--scale-font-default);
+  background-color: #91919172;
+}
+
+/* SUBTLE CV */
+.subtle {
+  background-color: transparent;
+}
+.buttonContainer:hover .subtle {
+  background-color: #dedede72;
+}
+.buttonContainer:active .subtle {
+  scale: var(--scale-font-default);
+  background-color: #91919172;
+}
+
+/* NEOMORPHISM NCV */
+.neomorphism {
+  background-color: var(--color-white-default);
+  box-shadow: 5px 5px 10px #b9b9b9, 
+             -5px -5px 10px #ffffff; 
+  transition: all 0.3s ease;
+}
+.buttonContainer:hover .neomorphism {
+  box-shadow: 3px 3px 5px #b9b9b9, 
+             -3px -3px 5px #ffffff;
+}
+.buttonContainer:active .neomorphism {
+  box-shadow: inset 3px 3px 5px #b9b9b9, 
+              inset -3px -3px 5px #ffffff;
+}
+
+/* DASH CV */
+.dash {
+  background-color: var(--color-white-default);
+}
+.dash:hover::after, .dash:hover::before {
+  content: "";
+  background-color: var(--color-white-default);
+  box-shadow: 0px 0px 20px 10px var(--color-white-default);
+  width: 10px;
+  height: 180%;
+  left: -30px;
+  top: -10px;
+  position: absolute;
+  rotate: 45deg;
+  animation: dashAnimation 0.8s ease-in forwards;
+  opacity: 0;
+}
+.dash:hover::before {
+  animation: dashAnimation 0.5s 0.4s ease-in forwards;
+}
+.buttonContainer:active .dash {
+  scale: var(--scale-font-default);
+  background-color: #91919172;
+}
+@keyframes dashAnimation {
+  0% {
+    left: -30px;
+    top: -10px;
+    opacity: 0;
+  }
+  100% {
+    left: 150%;
+    top: -10px;
+    opacity: 0.5;
+  }
+}
+
+.styles:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+.styles:disabled:active {
+  scale: 1;
+}
+.styles:disabled::after, .styles:disabled::before{
+  scale: 1;
+  display: none;
 }
