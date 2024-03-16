@@ -10,8 +10,8 @@ function setSize (size: string, styles: {[key: string]: string}) {
  
 function setRadius (radius: string, styles: {[key: string]: string}) {
   const string = radius.toLowerCase()
-  if (string === 'sm') return styles.sm_radius
   if (string === 'xs') return styles.xs_radius
+  if (string === 'sm') return styles.sm_radius
   if (string === 'md') return styles.md_radius
   if (string === 'lg') return styles.lg_radius
   if (string === 'xl') return styles.xl_radius
