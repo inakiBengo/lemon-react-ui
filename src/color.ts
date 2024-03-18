@@ -37,3 +37,4 @@ function hexToRgb (hex: string) {
 }
 
 export default setColor
+export {ColorIsLight, adjustBrightness, hexToRgb}

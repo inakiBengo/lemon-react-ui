@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from './Button';
+import { Button } from '../src/Button/Button';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 
 const text = 'children'
@@ -29,8 +29,9 @@ describe('Button', () => {
   test('classes are integrated correctly', () => {
     render(<Button variant='light' size='xs' radius='md' fw='700'>{text}</Button>)
 
+    const button = screen.getByText(text)
     classes.forEach(classname => {
-      expect(screen.getByText(text).className.includes(classname)).toBe(true)
+      expect(button.className.includes(classname)).toBe(true)
     })
   })
 
@@ -38,7 +39,7 @@ describe('Button', () => {
     render(<Button isLoading>{text}</Button>)
 
     const buttonLoader = screen.getByText(text)
-    expect(buttonLoader.disabled).toBe(true)
+    expect(buttonLoader).toHaveProperty('disabled', true)
     expect(buttonLoader.firstChild?.nodeName).toBe('svg')
   })
 
@@ -46,7 +47,7 @@ describe('Button', () => {
     render(<Button disabled>{text}</Button>)
 
     const buttonLoader = screen.getByText(text)
-    expect(buttonLoader.disabled).toBe(true)
+    expect(buttonLoader).toHaveProperty('disabled', true)
   })
 
   test("the color of the attribute is assigned and changes when hovered", () => {
@@ -58,4 +59,26 @@ describe('Button', () => {
     fireEvent.mouseEnter(button)
     expect(button.style.background).toBe(hoverColor)
   })
-})
+
+  test("The href attribute should change the button to an anchor", () => {
+    render(<Button blank href='https://www.google.com/'>{text}</Button>)
+
+    const anchor = screen.getByText(text)
+    expect(anchor.nodeName).toBe('A')
+    expect(anchor).toHaveProperty('href', 'https://www.google.com/')
+  })
+
+  test("the disabled attribute disables href", () => {
+    render(<Button disabled href='https://www.google.com/'>{text}</Button>)
+
+    const anchor = screen.getByText(text)
+    expect(anchor).toHaveProperty('href', 'http://localhost:3000/')
+  })
+
+  test("the isLoading attribute disables href", () => {
+    render(<Button isLoading href='https://www.google.com/'>{text}</Button>)
+
+    const anchor = screen.getByText(text)
+    expect(anchor).toHaveProperty('href', 'http://localhost:3000/')
+  })
+}) 

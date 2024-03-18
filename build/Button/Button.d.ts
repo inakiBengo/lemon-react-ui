@@ -8,6 +8,8 @@ interface Props {
     color?: string;
     disabled?: boolean;
     isLoading?: boolean;
+    href?: string;
+    blank?: boolean;
 }
 declare const Button: React.FC<Props>;
 export { Button };

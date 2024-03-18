@@ -251,14 +251,15 @@ svg {
   }
 }
 
-.styles:disabled {
+.styles:disabled, .styles[href=''] {
   opacity: 0.7;
   cursor: default;
 }
-.styles:disabled:active {
+.styles:disabled:active, .styles[href='']:active{
   scale: 1;
 }
-.styles:disabled::after, .styles:disabled::before{
+.styles:disabled::after, .styles:disabled::before, 
+.styles[href='']:after, .styles[href='']:before{
   scale: 1;
   display: none;
 }

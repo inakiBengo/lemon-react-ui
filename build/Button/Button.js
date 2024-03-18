@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './Button.module.css';
 import { setSize, setRadius, setFw, setVariant } from './styles';
 import setColor from "../color";
-const Button = ({ children, variant = 'default', size = 'sm', radius = 'sm', fw = '700', color, disabled, isLoading }) => {
+const Button = ({ children, variant = 'default', size = 'sm', radius = 'sm', fw = '700', color, disabled, isLoading, href, blank }) => {
     const [isHover, setIsHover] = useState(false);
     const [lightColor, setLightColor] = useState();
     const [darknesColor, setDarknesColor] = useState();
@@ -68,13 +68,24 @@ const Button = ({ children, variant = 'default', size = 'sm', radius = 'sm', fw 
             setOriginalColor(originalColor);
         }
     }, [color]);
-    return (React.createElement("div", { className: styles.buttonContainer, onMouseEnter: () => setIsHover(true), onMouseLeave: () => setIsHover(false) },
-        React.createElement("button", { className: elements, style: setStyles(), disabled: disabled || isLoading },
+    function disabledAnhcor(e) {
+        if (disabled || isLoading)
+            e.preventDefault();
+    }
+    return (React.createElement("div", { className: styles.buttonContainer, onMouseEnter: () => setIsHover(true), onMouseLeave: () => setIsHover(false) }, !href
+        ? (React.createElement("button", { className: elements, style: setStyles(), disabled: disabled || isLoading },
             React.createElement(React.Fragment, null,
                 isLoading
                     ? React.createElement("svg", { className: styles.loaderIcon, width: "200px", height: "200px", viewBox: "0 0 100 100", preserveAspectRatio: "xMidYMid" },
                         React.createElement("circle", { cx: "50", cy: "50", fill: "none", stroke: "#85a2b6", strokeWidth: "12", r: "35", strokeDasharray: "164.93361431346415 56.97787143782138", transform: "matrix(1,0,0,1,0,0)" }))
                     : '',
-                children))));
+                children)))
+        : (React.createElement("a", { href: disabled || isLoading ? '' : href, className: elements, style: setStyles(), onClick: disabledAnhcor, target: blank ? "_blank" : '' },
+            React.createElement(React.Fragment, null,
+                isLoading
+                    ? React.createElement("svg", { className: styles.loaderIcon, width: "200px", height: "200px", viewBox: "0 0 100 100", preserveAspectRatio: "xMidYMid" },
+                        React.createElement("circle", { cx: "50", cy: "50", fill: "none", stroke: "#85a2b6", strokeWidth: "12", r: "35", strokeDasharray: "164.93361431346415 56.97787143782138", transform: "matrix(1,0,0,1,0,0)" }))
+                    : '',
+                children)))));
 };
 export { Button };

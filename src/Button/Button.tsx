@@ -12,6 +12,8 @@ interface Props {
   color?: string
   disabled?: boolean
   isLoading?: boolean
+  href?: string
+  blank?: boolean
 }
 
 const Button: React.FC<Props> = ({
@@ -22,7 +24,9 @@ const Button: React.FC<Props> = ({
   fw='700',
   color,
   disabled,
-  isLoading
+  isLoading,
+  href,
+  blank
 }) => {
 
   const [isHover, setIsHover] = useState(false)
@@ -99,11 +103,20 @@ const Button: React.FC<Props> = ({
       setDarknesColor(darkestColor)
       setIsLightColor(isLightColor)
       setOriginalColor(originalColor)
+
     }
   }, [color])
 
+  function disabledAnhcor (e: React.MouseEvent) {
+    if(disabled || isLoading) 
+      e.preventDefault();
+  }
+
   return (
     <div className={styles.buttonContainer} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
+      {
+      !href 
+      ? (
       <button 
       className={elements} 
       style={setStyles()} 
@@ -117,7 +130,24 @@ const Button: React.FC<Props> = ({
         }
         {children}
         </>
-      </button>
+      </button> ) 
+      :(
+        <a 
+        href={(disabled || isLoading) ?'' :href}
+        className={elements} 
+        style={setStyles()} 
+        onClick={disabledAnhcor}
+        target={blank ?"_blank" :''}
+        >
+          <>
+          {
+            isLoading
+             ? <svg className={styles.loaderIcon} width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" ><circle cx="50" cy="50" fill="none" stroke="#85a2b6" strokeWidth="12" r="35" strokeDasharray="164.93361431346415 56.97787143782138" transform="matrix(1,0,0,1,0,0)" /></svg>
+             : ''
+          }
+          {children}
+          </>
+        </a> )}
     </div>
   )
 }

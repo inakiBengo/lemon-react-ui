@@ -1,9 +1,9 @@
 function setSize(size, styles) {
     const string = size.toLowerCase();
-    if (string === 'sm')
-        return styles.sm_size;
     if (string === 'xs')
         return styles.xs_size;
+    if (string === 'sm')
+        return styles.sm_size;
     if (string === 'md')
         return styles.md_size;
     if (string === 'lg')
@@ -14,10 +14,10 @@ function setSize(size, styles) {
 }
 function setRadius(radius, styles) {
     const string = radius.toLowerCase();
-    if (string === 'sm')
-        return styles.sm_radius;
     if (string === 'xs')
         return styles.xs_radius;
+    if (string === 'sm')
+        return styles.sm_radius;
     if (string === 'md')
         return styles.md_radius;
     if (string === 'lg')
